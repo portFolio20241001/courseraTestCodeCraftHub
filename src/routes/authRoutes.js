@@ -1,10 +1,32 @@
-// 必要なモジュールをインポート
-const express = require('express'); // Expressライブラリをインポート
-const router = express.Router(); // ルーターを作成
-const authController = require('../controllers/authController'); // 認証コントローラーをインポート
+// 必要なモジュールをインポートします。
+// Expressライブラリは、Node.js用のウェブアプリケーションフレームワークです。
+// これを使って、APIのルーティングやリクエスト・レスポンスの処理を簡単に行うことができます。
+const express = require('express');
 
-// ログインルートを定義
-router.post('/loginOrRegister', authController.loginOrRegister); // POSTリクエストを`/login`にマッピング
+// ExpressのRouterを使用して、個別のルート（エンドポイント）を定義します。
+// ルーターは、アプリケーションのリクエスト処理をモジュール化するために使用します。
+const router = express.Router();
 
-// ルーターをエクスポート
-module.exports = router; // 他のモジュールで利用可能にする
+// 認証に関する処理をまとめたコントローラーをインポートします。
+// `authController`は、ユーザーのログインや登録を処理する機能を持っています。
+const authController = require('../controllers/authController');
+
+/**
+ * ログインルートを定義します。
+ * このエンドポイントは、ユーザーがログインまたは新規登録をするために使用されます。
+ * 
+ * 使用例:
+ * ```javascript
+ * POST /loginOrRegister
+ *  - リクエストボディにメールアドレス、パスワード、ユーザー名などを送信します。
+ * ```
+ */
+router.post('/loginOrRegister', authController.loginOrRegister); 
+// `POST`リクエストを`/loginOrRegister`のパスにマッピングします。
+// `authController.loginOrRegister`関数がリクエストを処理します。
+// このエンドポイントでは、ユーザーのログインまたは新規登録を処理します。
+
+// ルーターをエクスポートします。
+// 他のモジュール（例えば、アプリケーションのメインファイル）で、このルーターを利用できるようにします。
+// これにより、ルートを他のモジュールで簡単にインポートして使えるようになります。
+module.exports = router;
